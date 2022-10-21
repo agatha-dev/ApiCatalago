@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApiCatalago.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20221018003059_CatalagoDbMigration")]
-    partial class CatalagoDbMigration
+    [Migration("20221019152113_inicio")]
+    partial class inicio
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -33,17 +33,21 @@ namespace ApiCatalago.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoriaId"), 1L, 1);
 
                     b.Property<string>("ImagemUrl")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<string>("Nome")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
 
                     b.HasKey("CategoriaId");
 
-                    b.ToTable("Categorias");
+                    b.ToTable("Categoria");
                 });
 
-            modelBuilder.Entity("ApiCatalago.Models.Produto", b =>
+            modelBuilder.Entity("ApiCatalago.Models.Produtos", b =>
                 {
                     b.Property<int>("ProdutoId")
                         .ValueGeneratedOnAdd()
@@ -51,26 +55,32 @@ namespace ApiCatalago.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProdutoId"), 1L, 1);
 
-                    b.Property<int?>("CategoriaId")
+                    b.Property<int>("CategoriaId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DataCadastro")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Descricao")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<float>("Estoque")
                         .HasColumnType("real");
 
                     b.Property<string>("ImagemUrl")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<string>("Nome")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
 
                     b.Property<decimal>("Preco")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(10,2)");
 
                     b.HasKey("ProdutoId");
 
@@ -79,11 +89,13 @@ namespace ApiCatalago.Migrations
                     b.ToTable("Produtos");
                 });
 
-            modelBuilder.Entity("ApiCatalago.Models.Produto", b =>
+            modelBuilder.Entity("ApiCatalago.Models.Produtos", b =>
                 {
                     b.HasOne("ApiCatalago.Models.Categoria", "Categoria")
                         .WithMany("Produtos")
-                        .HasForeignKey("CategoriaId");
+                        .HasForeignKey("CategoriaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Categoria");
                 });

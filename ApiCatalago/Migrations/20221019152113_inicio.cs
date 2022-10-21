@@ -5,22 +5,22 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ApiCatalago.Migrations
 {
-    public partial class CatalagoDbMigration : Migration
+    public partial class inicio : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Categorias",
+                name: "Categoria",
                 columns: table => new
                 {
                     CategoriaId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ImagemUrl = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Nome = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
+                    ImagemUrl = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Categorias", x => x.CategoriaId);
+                    table.PrimaryKey("PK_Categoria", x => x.CategoriaId);
                 });
 
             migrationBuilder.CreateTable(
@@ -29,22 +29,23 @@ namespace ApiCatalago.Migrations
                 {
                     ProdutoId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Descricao = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Preco = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    ImagemUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Nome = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
+                    Descricao = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Preco = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
+                    ImagemUrl = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
                     Estoque = table.Column<float>(type: "real", nullable: false),
                     DataCadastro = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CategoriaId = table.Column<int>(type: "int", nullable: true)
+                    CategoriaId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Produtos", x => x.ProdutoId);
                     table.ForeignKey(
-                        name: "FK_Produtos_Categorias_CategoriaId",
+                        name: "FK_Produtos_Categoria_CategoriaId",
                         column: x => x.CategoriaId,
-                        principalTable: "Categorias",
-                        principalColumn: "CategoriaId");
+                        principalTable: "Categoria",
+                        principalColumn: "CategoriaId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -59,7 +60,7 @@ namespace ApiCatalago.Migrations
                 name: "Produtos");
 
             migrationBuilder.DropTable(
-                name: "Categorias");
+                name: "Categoria");
         }
     }
 }

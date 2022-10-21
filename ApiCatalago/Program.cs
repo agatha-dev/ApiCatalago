@@ -11,8 +11,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //conexão com banco de dados
-//string mysqlConnnection = builder.Configuration.GetConnectionString("DefaultConnection");
-//builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlServer(connectionString));
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlServer(connectionString));
 
