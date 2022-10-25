@@ -20,8 +20,7 @@ namespace ApiCatalago.Models
         [Required]
         [Column(TypeName ="decimal(10,2)")]
         public decimal Preco { get; set; }
-
-        [Required]
+      
         [StringLength(300)]
         public string ImagemUrl { get; set; }
 
@@ -31,6 +30,6 @@ namespace ApiCatalago.Models
 
         public int CategoriaId { get; set; }
 
-        public Categoria Categoria { get; set; }
+        public Categoria? Categoria { get; set; }
     }
 }
