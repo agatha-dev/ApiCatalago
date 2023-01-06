@@ -262,3 +262,9 @@ C:\Users\agath\source\repos\ApiCatalago\ApiCatalago\bin\Debug\net6.0\runtimes\un
 C:\Users\agath\source\repos\ApiCatalago\ApiCatalago\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
 C:\Users\agath\source\repos\ApiCatalago\ApiCatalago\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\agath\source\repos\ApiCatalago\ApiCatalago\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Users\agath\source\repos\ApiCatalago\ApiCatalago\bin\Debug\net6.0\EPPlus.dll
+C:\Users\agath\source\repos\ApiCatalago\ApiCatalago\bin\Debug\net6.0\EPPlus.Interfaces.dll
+C:\Users\agath\source\repos\ApiCatalago\ApiCatalago\bin\Debug\net6.0\EPPlus.System.Drawing.dll
+C:\Users\agath\source\repos\ApiCatalago\ApiCatalago\bin\Debug\net6.0\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Users\agath\source\repos\ApiCatalago\ApiCatalago\bin\Debug\net6.0\System.Security.Cryptography.Pkcs.dll
+C:\Users\agath\source\repos\ApiCatalago\ApiCatalago\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll

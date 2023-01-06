@@ -59,14 +59,27 @@ namespace ApiCatalago.Controllers
                 return null;
             }
         }
-        //[HttpPost("{id:int}")]
-        //public ActionResult PostRelatorio(int id)
-        //{
-        //    if(id is null)
-        //    {
-        //        return BadRequest();
-        //    }
-        //}
+        [HttpPatch]
+        public ActionResult<Produtos> ExportarRelatorio(string saida)
+        {
+
+            List<Produtos> listaProdutos = _context.Produtos.ToList();
+
+            try
+            {
+                string nome = saida + $@"RelatorioProdutos" + ".xlsx";
+                FileInfo fi = new FileInfo(nome);
+
+                Services.ExportarRelatorios.ExportaExcel(listaProdutos, saida, fi, nome);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return Ok(listaProdutos);
+
+        }
 
         [HttpPut("{id:int}")]
         public ActionResult Put(int id, Produtos produtos)
